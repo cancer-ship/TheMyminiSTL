@@ -55,14 +55,14 @@ void destroy_one(Ty* pointer, std::false_type)
 
 template <class ForwardIter>
 void destroy_cat(ForwardIter , ForwardIter , std::true_type) {}
-
+//  true_type  特化 循环调用每一个对象destroy
 template <class ForwardIter>
 void destroy_cat(ForwardIter first, ForwardIter last, std::false_type)
 {
   for (; first != last; ++first)
     destroy(&*first);
 }
-
+//
 template <class Ty>
 void destroy(Ty* pointer)
 {
